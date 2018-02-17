@@ -79,13 +79,13 @@ export class LoginPage {
 
 
 
-onSignIn(phone) {
+onSignIn() {
   this.auth.login(this.signinForm.value).subscribe(res => console.log(res));
 
 
   let alert = this.alertCtrl.create({
     title: 'Enter verification code',
-    message: 'The code we sent to ' + phone,
+    message: 'The code we sent to ' + this.signinForm.value,
     inputs: [
       {
         name: 'code',
@@ -116,6 +116,34 @@ onSignIn(phone) {
 
 onSignUp(user) {
   this.auth.register(this.signupForm.value).subscribe(res => console.log(res));
+
+  let alert = this.alertCtrl.create({
+    title: 'Enter verification code',
+    message: 'The code we sent to ' + this.signupForm.value,
+    inputs: [
+      {
+        name: 'code',
+        placeholder: 'code',
+        type: 'number'
+      }
+    ],
+    buttons: [
+      {
+        text: 'cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Log in',
+        handler: () => {
+          this.navCtrl.setRoot(TabsPage);
+        }
+      }
+    ]
+  });
+  alert.present();
 }
 
 toggleShowLogin($event) {
