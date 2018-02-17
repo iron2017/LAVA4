@@ -1,0 +1,8 @@
+{
+  "name": "Lara",
+  "app_id": "2738a779",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
