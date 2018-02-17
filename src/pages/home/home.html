@@ -1,17 +1,112 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <div class="lava-header">
+      <ion-row justify-content-end>
+          <button id="notification-button" ion-button clear>
+            <ion-icon name="notifications-outline">
+              <ion-badge id="notifications-badge" clear>2</ion-badge>
+            </ion-icon>
+          </button>
+
+        </ion-row>
+
+        <ion-row class="user-container">
+          <ion-col>
+            <p class="user-name">{{user.name}}</p>
+            <p class="user-active">{{user.active}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="today-container">
+          <ion-col>
+            <p class="today">TODAY</p>
+            <ion-row>
+              <ion-col class="floors">
+                floors
+                <ion-row justify-content-center>
+                  <ion-icon name="podium"></ion-icon>
+                  {{user.today.floors}}
+                </ion-row>
+              </ion-col>
+              <ion-col class="steps">
+                steps
+                <ion-row justify-content-center>
+                  <ion-icon name="happy"></ion-icon>
+                  {{user.today.steps}}
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+  </div>
+
+  <div class="lava-content">
+      <ion-row>
+          <p class="section-title">Start a Workout:</p>
+
+          <ion-slides slidesPerView="2.2" id="Start-a-Workout">
+            <ion-slide class="workout" *ngFor="let workout of  user.workouts">
+              <p class="workout-title">{{workout.title}}</p>
+
+              <ion-row no-padding class="workout-container">
+                <ion-col no-padding col-auto>
+                  <p class="workout-exercice">{{workout.exercice}}</p>
+                </ion-col>
+                <ion-col no-padding col-auto>
+                  <p class="workout-time">{{workout.time}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col no-padding>
+                  <p class="workout-average">{{workout.average}}</p>
+                  <p class="workout-state">{{workout.state}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-slide>
+          </ion-slides>
+        </ion-row>
+
+
+        <ion-row>
+          <p class="section-title">Start a Workout:</p>
+
+          <ion-slides slidesPerView="2.9" id="Start-a-Workout">
+            <ion-slide class="workout booking" *ngFor="let booking of user.bookings ">
+              <p class="workout-title">{{booking.title}}</p>
+
+
+              <ion-row no-padding>
+                <ion-col no-padding>
+                  <p class="workout-state">{{booking.duration}}</p>
+                </ion-col>
+              </ion-row>
+
+              <ion-row no-padding class="workout-container">
+                <ion-col no-padding col-auto>
+                  <p class="workout-exercice">{{booking.day}}</p>
+                </ion-col>
+                <ion-col no-padding col-auto>
+                  <p class="workout-time">{{booking.time}}</p>
+                </ion-col>
+              </ion-row>
+
+            </ion-slide>
+
+            <ion-slide class="workout booking add-button">
+              <button clear ion-button>
+                <ion-icon name="add"></ion-icon>
+              </button>
+            </ion-slide>
+
+          </ion-slides>
+        </ion-row>
+  </div>
+
+
+
 </ion-content>

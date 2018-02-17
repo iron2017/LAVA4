@@ -1,44 +1,97 @@
-
 <ion-content padding>
 
+  <ion-row class="login-img-container">
+    <img src="../assets/imgs/LOGO@3x.png">
+  </ion-row>
+
+
   <form [formGroup]="signinForm" (ngSubmit)="onSignIn()" *ngIf="loginOrSignUp">
-    <ion-row>
-      <ion-input formControlName="username" type="email" placeholder="Mail"></ion-input>
+    <ion-row align-items-center>
+      <button ion-button clear id="activeBtn">Sign in</button>
     </ion-row>
-    <ion-row>
-      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
-    </ion-row>
-
-    <ion-row>
-
-      <ion-col align-items-center>
-        <button ion-button clear id="loginBtn">Log in</button>
+    <ion-row justify-content-center>
+      <ion-col col-1>
+          <ion-icon name="phone-portrait"></ion-icon>
       </ion-col>
-      <ion-col align-items-center>
+      <ion-col  col-auto>
+        <ion-input formControlName="phone" type="phone" placeholder="Enter your phone number"></ion-input>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+    </ion-row> -->
+
+    <ion-row  justify-content-center class="gray-note">
+
+      <ion-col col-auto>
+        <p>Don't Have an account?</p>
+      </ion-col>
+
+      <ion-col col-auto>
         <button ion-button clear (click)="toggleShowLogin($event)">Sign up</button>
       </ion-col>
     </ion-row>
   </form>
 
-  <form  [formGroup]="signupForm" (ngSubmit)="onSignUp()" *ngIf="!loginOrSignUp">
-    <ion-row>
-      <ion-input formControlName="username" type="text" placeholder="Username"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="email" type="email" placeholder="Mail"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+  <!--
+  {
+    "AuthorizationKey":"as@dL8]Rn3$2S!anR",
+    "FullName":"Turki Alomari",
+    "MobileNumber":"966541114424",
+    "CityID": "1",
+    "RegionID":null,
+    "Email":null,
+    "NationalityID":null,
+    "Language":null,
+    "BirthDate":null
+  }
+-->
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSignUp()" *ngIf="!loginOrSignUp">
+
+    <ion-row align-items-center>
+      <button ion-button clear id="activeBtn" type="submit">Sign up</button>
     </ion-row>
 
     <ion-row>
-      <ion-col align-items-center>
-        <button ion-button clear id="loginBtn" type="submit">Sign up</button>
-      </ion-col>
-      <ion-col align-items-center>
-        <button ion-button clear (click)="toggleShowLogin($event)">Log in</button>
-      </ion-col>
+      <ion-input formControlName="FullName" type="text" placeholder="Full Name"></ion-input>
     </ion-row>
+    <ion-row>
+      <ion-input formControlName="MobileNumber" type="text" placeholder="Mobile Number"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="CityID" type="text" placeholder="City ID"></ion-input>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-input formControlName="RegionID" type="text" placeholder="Region ID"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="Email" type="email" placeholder="Email"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="NationalityID" type="text" placeholder="Nationality ID"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="Language" type="text" placeholder="Language"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="BirthDate" type="text" placeholder="Birth Date"></ion-input>
+    </ion-row> -->
+
+
+
+    <ion-row  justify-content-center class="gray-note">
+
+        <ion-col col-auto>
+          <p>Alredy Have an account?</p>
+        </ion-col>
+
+        <ion-col col-auto>
+          <button ion-button clear (click)="toggleShowLogin($event)">Sign in</button>
+        </ion-col>
+      </ion-row>
+
+
   </form>
 
 </ion-content>

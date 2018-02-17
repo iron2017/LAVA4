@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { TabsPage } from '../tabs/tabs';
+
 
 
 /**
@@ -22,21 +25,50 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private auth: AuthenticationProvider
   ) {
     this.signinForm = formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      phone: ['', Validators.required]
     });
 
+
+    // "AuthorizationKey":"as@dL8]Rn3$2S!anR",
+    // "FullName":"Turki Alomari",
+    // "MobileNumber":"966541114424",
+    // "CityID": "1",
+    // "RegionID":null,
+    // "Email":null,
+    // "NationalityID":null,
+    // "Language":null,
+    // "BirthDate":null
+
     this.signupForm = formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+      FullName: ['', Validators.compose([Validators.required, Validators.maxLength(30),
         Validators.pattern(/[a-zA-Z0-9_]+/)]),
       ],
-      email: ['', Validators.compose(
-        [Validators.required, Validators.maxLength(40),
-          Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)])],
-      password: ['', Validators.required],
+      MobileNumber: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+        Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      ],
+      CityID: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+        Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      ],
+      // RegionID: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+      //   Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      // ],
+      // Email: ['', Validators.compose(
+      //   [Validators.required, Validators.maxLength(40),
+      //     Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)])],
+
+      // NationalityID: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+      //   Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      // ],
+      // Language: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+      //   Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      // ],
+      // BirthDate: ['', Validators.compose([Validators.required, Validators.maxLength(30),
+      //   Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      // ],
     });
   }
 
@@ -46,18 +78,19 @@ export class LoginPage {
 
 
 
-onSignIn() {
+onSignIn(phone) {
+  this.auth.login(this.signinForm.value).subscribe(res => console.log(res));
 
+  this.navCtrl.setRoot(TabsPage);
 }
 
-onSignUp() {
-
+onSignUp(user) {
+  this.auth.register(this.signupForm.value).subscribe(res => console.log(res));
 }
 
 toggleShowLogin($event) {
   $event.preventDefault()
   this.loginOrSignUp = !this.loginOrSignUp;
-
 }
 
 }
