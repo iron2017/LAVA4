@@ -85,7 +85,7 @@ onSignIn() {
 
   let alert = this.alertCtrl.create({
     title: 'Enter verification code',
-    message: 'The code we sent to ' + this.signinForm.value.MobileNumber,
+    message: 'The code we sent to ' + this.signinForm.value.phone,
     inputs: [
       {
         name: 'code',
