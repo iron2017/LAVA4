@@ -1,0 +1,44 @@
+
+<ion-content padding>
+
+  <form [formGroup]="signinForm" (ngSubmit)="onSignIn()" *ngIf="loginOrSignUp">
+    <ion-row>
+      <ion-input formControlName="username" type="email" placeholder="Mail"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col align-items-center>
+        <button ion-button clear id="loginBtn">Log in</button>
+      </ion-col>
+      <ion-col align-items-center>
+        <button ion-button clear (click)="toggleShowLogin($event)">Sign up</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <form  [formGroup]="signupForm" (ngSubmit)="onSignUp()" *ngIf="!loginOrSignUp">
+    <ion-row>
+      <ion-input formControlName="username" type="text" placeholder="Username"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="email" type="email" placeholder="Mail"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-col align-items-center>
+        <button ion-button clear id="loginBtn" type="submit">Sign up</button>
+      </ion-col>
+      <ion-col align-items-center>
+        <button ion-button clear (click)="toggleShowLogin($event)">Log in</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>
