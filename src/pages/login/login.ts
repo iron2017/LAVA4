@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
@@ -26,7 +26,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    private auth: AuthenticationProvider
+    private auth: AuthenticationProvider,
+    private alertCtrl: AlertController
   ) {
     this.signinForm = formBuilder.group({
       phone: ['', Validators.required]
@@ -81,7 +82,36 @@ export class LoginPage {
 onSignIn(phone) {
   this.auth.login(this.signinForm.value).subscribe(res => console.log(res));
 
-  this.navCtrl.setRoot(TabsPage);
+
+  let alert = this.alertCtrl.create({
+    title: 'Enter verification code',
+    message: 'The code we sent to ' + phone,
+    inputs: [
+      {
+        name: 'code',
+        placeholder: 'code',
+        type: 'number'
+      }
+    ],
+    buttons: [
+      {
+        text: 'cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Log in',
+        handler: () => {
+          this.navCtrl.setRoot(TabsPage);
+        }
+      }
+    ]
+  });
+  alert.present();
+
+
 }
 
 onSignUp(user) {
