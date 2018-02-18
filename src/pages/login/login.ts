@@ -30,7 +30,7 @@ export class LoginPage {
     private alertCtrl: AlertController
   ) {
     this.signinForm = formBuilder.group({
-      phone: ['', Validators.required]
+      MobileNumber: ['', Validators.required]
     });
 
 
@@ -80,70 +80,101 @@ export class LoginPage {
 
 
 onSignIn() {
-  this.auth.login(this.signinForm.value).subscribe(res => console.log(res));
-
-
-  let alert = this.alertCtrl.create({
-    title: 'Enter verification code',
-    message: 'The code we sent to ' + this.signinForm.value.phone,
-    inputs: [
-      {
-        name: 'code',
-        placeholder: 'code',
-        type: 'number'
-      }
-    ],
-    buttons: [
-      {
-        text: 'cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+  this.auth.login(this.signinForm.value).subscribe(res => {
+    let alert = this.alertCtrl.create({
+      title: 'Enter verification code',
+      message: 'The code we sent to ' + this.signinForm.value.MobileNumber,
+      inputs: [
+        {
+          name: 'code',
+          placeholder: 'code',
+          type: 'number'
         }
-      },
-      {
-        text: 'Log in',
-        handler: () => {
-          this.navCtrl.setRoot(TabsPage);
+      ],
+      buttons: [
+        {
+          text: 'cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Log in',
+          handler: () => {
+            this.navCtrl.setRoot(TabsPage);
+          }
         }
-      }
-    ]
+      ]
+    });
+    alert.present()
+  }, error => {
+    let alert = this.alertCtrl.create({
+      title: 'Somthing went wrong !',
+      message: JSON.stringify(error),
+      buttons: [
+        {
+          text: 'cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present()
   });
-  alert.present();
 
 
 }
 
 onSignUp(user) {
-  this.auth.register(this.signupForm.value).subscribe(res => console.log(res));
+  this.auth.register(this.signupForm.value).subscribe(res => {
+    let alert = this.alertCtrl.create({
+      title: 'Enter verification code',
+      message: 'The code we sent to ' + this.signupForm.value.MobileNumber,
+      inputs: [
+        {
+          name: 'code',
+          placeholder: 'code',
+          type: 'number'
+        }
+      ],
+      buttons: [
+        {
+          text: 'cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Log in',
+          handler: () => {
+            this.navCtrl.setRoot(TabsPage);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }, error => {
+    let alert = this.alertCtrl.create({
+      title: 'Somthing went wrong !',
+      message: JSON.stringify(error),
+      buttons: [
+        {
+          text: 'cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present()
+  })
 
-  let alert = this.alertCtrl.create({
-    title: 'Enter verification code',
-    message: 'The code we sent to ' + this.signupForm.value.MobileNumber,
-    inputs: [
-      {
-        name: 'code',
-        placeholder: 'code',
-        type: 'number'
-      }
-    ],
-    buttons: [
-      {
-        text: 'cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      },
-      {
-        text: 'Log in',
-        handler: () => {
-          this.navCtrl.setRoot(TabsPage);
-        }
-      }
-    ]
-  });
-  alert.present();
+
 }
 
 toggleShowLogin($event) {

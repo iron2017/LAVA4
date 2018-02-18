@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class AuthenticationProvider {
   private config = {
-    baseUrl: "http://lava.sa/api/web",
+    baseUrl: "/api/web",
     AuthorizationKey: "as@dL8]Rn3$2S!anR",
     userOptions: {
       headers: new HttpHeaders({
@@ -31,44 +31,15 @@ export class AuthenticationProvider {
   }
 
   login(loginForm) {
-    // console.log(loginForm.controls.phone.value);
-    // return this.http.post(this.endpoints.login, {MobileNumber: loginForm.controls.phone.value}, this.config.userOptions);
-
-    // let body = JSON.stringify(data);
-    // let headers: Headers = new Headers();
-    // headers.append('latitude', '23.259933');
-    // headers.append('longitude', '77.412615');
-    // headers.append('nearby', '5');
-    // headers.append('Content-Type', 'application/json');
-
-    // let options = new RequestOptions({ headers: headers });
-
-    // return this.http.post(this.url, body, options)
-    //     .map((res: Response) => res.json())
-    //     .catch(error => error);
-
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: "as@dL8]Rn3$2S!anR"
+        "AuthorizationKey" :"as8dL88Rn382S5anR",
+        "Content-Type": "application/x-www-form-urlencoded"
       })
     };
 
-    const httpfuck = {
-      headers: new HttpHeaders().set(
-        "Authorization",
-        "as@dL8]Rn3$2S!anR"
-      ).set(
-        "Content-Type",
-        "application/json"
-      ) }
-
-    // console.log(this.endpoints.login)
-    // console.log({MobileNumber: loginForm.controls.phone.value})
-    // console.log({httpOptions})
-
-    return this.http
-      .post('http://lava.sa/api/web/user/login', loginForm, httpfuck);
+    console.log(httpOptions.headers.get("AuthorizationKey"));
+    return this.http.post("http://lava.sa/api/web/user/login", JSON.stringify({MobileNumber: '966541114424'}), httpOptions)
   }
 
   register(user) {
