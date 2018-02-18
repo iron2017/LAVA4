@@ -2,7 +2,6 @@ import { NgModule, ErrorHandler } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
 import { HttpClientModule } from "@angular/common/http";
-import { HttpModule } from "@angular/http";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyApp } from "./app.component";
 
@@ -31,7 +30,7 @@ import { AuthenticationProvider } from "../providers/authentication/authenticati
     TabsPage,
     LoginPage
   ],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpClientModule, HttpModule],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpClientModule],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,

@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { NavController, NavParams, AlertController } from "ionic-angular";
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthenticationProvider } from '../../providers/authentication/authentication';
-import { TabsPage } from '../tabs/tabs';
-
-
+import { AuthenticationProvider } from "../../providers/authentication/authentication";
+import { TabsPage } from "../tabs/tabs";
 
 /**
  * Generated class for the LoginPage page.
@@ -15,8 +13,8 @@ import { TabsPage } from '../tabs/tabs';
  */
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: "page-login",
+  templateUrl: "login.html"
 })
 export class LoginPage {
   signupForm: FormGroup;
@@ -30,9 +28,8 @@ export class LoginPage {
     private alertCtrl: AlertController
   ) {
     this.signinForm = formBuilder.group({
-      MobileNumber: ['', Validators.required]
+      MobileNumber: ["", Validators.required]
     });
-
 
     // "AuthorizationKey":"as@dL8]Rn3$2S!anR",
     // "FullName":"Turki Alomari",
@@ -45,15 +42,30 @@ export class LoginPage {
     // "BirthDate":null
 
     this.signupForm = formBuilder.group({
-      FullName: ['', Validators.compose([Validators.required, Validators.maxLength(30),
-        Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      FullName: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.pattern(/[a-zA-Z0-9_]+/)
+        ])
       ],
-      MobileNumber: ['', Validators.compose([Validators.required, Validators.maxLength(30),
-        Validators.pattern(/[a-zA-Z0-9_]+/)]),
+      MobileNumber: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.pattern(/[a-zA-Z0-9_]+/)
+        ])
       ],
-      CityID: ['', Validators.compose([Validators.required, Validators.maxLength(30),
-        Validators.pattern(/[a-zA-Z0-9_]+/)]),
-      ],
+      CityID: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30),
+          Validators.pattern(/[a-zA-Z0-9_]+/)
+        ])
+      ]
       // RegionID: ['', Validators.compose([Validators.required, Validators.maxLength(30),
       //   Validators.pattern(/[a-zA-Z0-9_]+/)]),
       // ],
@@ -74,112 +86,155 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log("ionViewDidLoad LoginPage");
   }
 
+  onSignIn() {
+    this.auth.login(this.signinForm.value).subscribe(
+      res => {
+        let alert = this.alertCtrl.create({
+          title: "Enter verification code",
+          message: "The code we sent to " + this.signinForm.value.MobileNumber,
+          inputs: [
+            {
+              name: "code",
+              placeholder: "code",
+              type: "number"
+            }
+          ],
+          buttons: [
+            {
+              text: "cancel",
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              }
+            },
+            {
+              text: "Log in",
+              handler: () => {
+                this.navCtrl.setRoot(TabsPage);
+              }
+            }
+          ]
+        });
+        alert.present();
+      },
+      error => {
+        let alert = this.alertCtrl.create({
+          title: "Somthing went wrong !",
+          message: JSON.stringify(error),
+          buttons: [
+            {
+              text: "cancel",
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+    );
+    // .subscribe(res => {
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Enter verification code',
+    //     message: 'The code we sent to ' + this.signinForm.value.MobileNumber,
+    //     inputs: [
+    //       {
+    //         name: 'code',
+    //         placeholder: 'code',
+    //         type: 'number'
+    //       }
+    //     ],
+    //     buttons: [
+    //       {
+    //         text: 'cancel',
+    //         role: 'cancel',
+    //         handler: () => {
+    //           console.log('Cancel clicked');
+    //         }
+    //       },
+    //       {
+    //         text: 'Log in',
+    //         handler: () => {
+    //           this.navCtrl.setRoot(TabsPage);
+    //         }
+    //       }
+    //     ]
+    //   });
+    //   alert.present()
+    // }, error => {
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Somthing went wrong !',
+    //     message: JSON.stringify(error),
+    //     buttons: [
+    //       {
+    //         text: 'cancel',
+    //         role: 'cancel',
+    //         handler: () => {
+    //           console.log('Cancel clicked');
+    //         }
+    //       }
+    //     ]
+    //   });
+    //   alert.present()
+    // });
+  }
 
+  onSignUp(user) {
+    this.auth.register(this.signupForm.value).subscribe(
+      res => {
+        let alert = this.alertCtrl.create({
+          title: "Enter verification code",
+          message: "The code we sent to " + this.signupForm.value.MobileNumber,
+          inputs: [
+            {
+              name: "code",
+              placeholder: "code",
+              type: "number"
+            }
+          ],
+          buttons: [
+            {
+              text: "cancel",
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              }
+            },
+            {
+              text: "Log in",
+              handler: () => {
+                this.navCtrl.setRoot(TabsPage);
+              }
+            }
+          ]
+        });
+        alert.present();
+      },
+      error => {
+        let alert = this.alertCtrl.create({
+          title: "Somthing went wrong !",
+          message: JSON.stringify(error),
+          buttons: [
+            {
+              text: "cancel",
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+    );
+  }
 
-onSignIn() {
-  this.auth.login(this.signinForm.value).subscribe(res => {
-    let alert = this.alertCtrl.create({
-      title: 'Enter verification code',
-      message: 'The code we sent to ' + this.signinForm.value.MobileNumber,
-      inputs: [
-        {
-          name: 'code',
-          placeholder: 'code',
-          type: 'number'
-        }
-      ],
-      buttons: [
-        {
-          text: 'cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Log in',
-          handler: () => {
-            this.navCtrl.setRoot(TabsPage);
-          }
-        }
-      ]
-    });
-    alert.present()
-  }, error => {
-    let alert = this.alertCtrl.create({
-      title: 'Somthing went wrong !',
-      message: JSON.stringify(error),
-      buttons: [
-        {
-          text: 'cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    alert.present()
-  });
-
-
-}
-
-onSignUp(user) {
-  this.auth.register(this.signupForm.value).subscribe(res => {
-    let alert = this.alertCtrl.create({
-      title: 'Enter verification code',
-      message: 'The code we sent to ' + this.signupForm.value.MobileNumber,
-      inputs: [
-        {
-          name: 'code',
-          placeholder: 'code',
-          type: 'number'
-        }
-      ],
-      buttons: [
-        {
-          text: 'cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Log in',
-          handler: () => {
-            this.navCtrl.setRoot(TabsPage);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }, error => {
-    let alert = this.alertCtrl.create({
-      title: 'Somthing went wrong !',
-      message: JSON.stringify(error),
-      buttons: [
-        {
-          text: 'cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    alert.present()
-  })
-
-
-}
-
-toggleShowLogin($event) {
-  $event.preventDefault()
-  this.loginOrSignUp = !this.loginOrSignUp;
-}
-
+  toggleShowLogin($event) {
+    $event.preventDefault();
+    this.loginOrSignUp = !this.loginOrSignUp;
+  }
 }
