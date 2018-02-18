@@ -19,6 +19,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { LoginPage } from "../pages/login/login";
 import { AuthenticationProvider } from "../providers/authentication/authentication";
 import { WorkoutPage } from "../pages/workout/workout";
+import { ProfileProvider } from '../providers/profile/profile';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { WorkoutPage } from "../pages/workout/workout";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthenticationProvider,
+    ProfileProvider,
 
   ]
 })
