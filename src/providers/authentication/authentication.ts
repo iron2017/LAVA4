@@ -12,7 +12,7 @@ import { AlertController } from "ionic-angular";
 @Injectable()
 export class AuthenticationProvider {
   private config = {
-    baseUrl: "http://lava.sa/api/web",
+    baseUrl: "/api/web",
     AuthorizationKey: "as@dL8]Rn3$2S!anR",
     userOptions: {
       headers: new HttpHeaders({
@@ -44,7 +44,7 @@ export class AuthenticationProvider {
       withCredentials: true
     };
     return this.http.post(
-      "http://lava.sa/api/web/user/login",
+      "/api/web/user/login",
       `MobileNumber=${loginForm.MobileNumber}`,
 
       options
@@ -63,7 +63,7 @@ export class AuthenticationProvider {
       params,
       withCredentials: true
     };
-    return this.http.post("http://lava.sa/api/web/user/register", JSON.stringify({
+    return this.http.post("/api/web/user/register", JSON.stringify({
         AuthorizationKey: user.AuthorizationKey,
         FullName: user.FullName,
         MobileNumber: user.MobileNumber,
