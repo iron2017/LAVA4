@@ -11,21 +11,14 @@ import { AlertController } from "ionic-angular";
 */
 @Injectable()
 export class AuthenticationProvider {
-  private config = {
-    baseUrl: "/api/web",
-    AuthorizationKey: "as@dL8]Rn3$2S!anR",
-    userOptions: {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        AuthorizationKey: "as@dL8]Rn3$2S!anR"
-      })
-    }
-  };
 
-  private endpoints = {
-    login: `${this.config.baseUrl}/user/login`,
-    register: `${this.config.baseUrl}/user/register`,
-    Assets: `${this.config.baseUrl}/service/index`
+  private config = {
+    baseUrl: "/api/",
+    AuthorizationKey: "as@dL8]Rn3$2S!anR",
+    headers: new HttpHeaders({
+      "Content-Type": "application/x-www-form-urlencoded",
+      AuthorizationKey: "as@dL8]Rn3$2S!anR"
+    })
   };
 
   constructor(public http: HttpClient, private alertCtrl: AlertController) {
@@ -33,10 +26,7 @@ export class AuthenticationProvider {
   }
 
   login(loginForm) {
-    const headers = new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded",
-      AuthorizationKey: "as@dL8]Rn3$2S!anR"
-    });
+    const headers = this.config.headers;
     const params = new HttpParams();
     const options = {
       headers,
@@ -44,27 +34,22 @@ export class AuthenticationProvider {
       withCredentials: true
     };
     return this.http.post(
-      "/api/web/user/login",
+      `${this.config.baseUrl}/web/user/login`,
       `MobileNumber=${loginForm.MobileNumber}`,
-
       options
     );
   }
 
   register(user) {
-    const headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      AuthorizationKey: "as@dL8]Rn3$2S!anR"
-    });
-
+    const headers = this.config.headers;
     const params = new HttpParams()
     const options = {
       headers,
       params,
       withCredentials: true
     };
-    return this.http.post("/api/web/user/register", JSON.stringify({
-        AuthorizationKey: user.AuthorizationKey,
+    return this.http.post(`${this.config.baseUrl}/web/user/register`, JSON.stringify({
+        AuthorizationKey: this.config.AuthorizationKey,
         FullName: user.FullName,
         MobileNumber: user.MobileNumber,
         CityID: user.CityID,
@@ -74,16 +59,5 @@ export class AuthenticationProvider {
         Language: user.Language,
         BirthDate: user.BirthDate
       }), options);
-  }
-
-  getAssets(accessToken) {
-    return this.http.get(this.endpoints.Assets, {
-      headers: {
-        Authorization: this.config.AuthorizationKey
-      },
-      params: {
-        AccessToken: accessToken
-      }
-    });
   }
 }
