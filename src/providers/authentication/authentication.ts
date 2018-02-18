@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 // import { TabsPage } from '../../pages/tabs/tabs';
-import { AlertController } from 'ionic-angular';
+import { AlertController } from "ionic-angular";
 
 /*
   Generated class for the AuthenticationProvider provider.
@@ -33,70 +33,48 @@ export class AuthenticationProvider {
   }
 
   login(loginForm) {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     "Content-Type": "application/json",
-    //     "AuthorizationKey": "as@dL8]Rn3$2S!anR"
-    //   })
-    // };
-
-    // console.log(httpOptions.headers.get("Content-Type"));
-    // return this.http.post("http://lava.sa/api/web/user/login", JSON.stringify({
-    //   "Username": "0596909965",
-    //   "Password": "1234567"
-    // }), httpOptions)
-
-    // const params = new HttpParams()
-    //   .set("MobileNumber", "966541114424");
-
-    // const headers = new HttpHeaders()
-    //   .set("Authorization", " Basic as@dL8]Rn3$2S!anR")
-    //   // .set("AuthorizationKey", " Basic as@dL8]Rn3$2S!anR")
-    //   .set("AuthorizationKey", " as@dL8]Rn3$2S!anR")
-    //   .set("Content-Type", "application/x-www-form-urlencoded");
-
-    // const httpOptions = {
-    //   headers: headers,
-    //   params: params,
-    //   withCredentials: true
-    // };
-
-    // return this.http.post<Response>("http://lava.sa/api/web/user/login",  new FormData(), httpOptions )
-
     const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'AuthorizationKey': 'as@dL8]Rn3$2S!anR'
+      "Content-Type": "application/json",
+      AuthorizationKey: "as@dL8]Rn3$2S!anR"
     });
-    const params = new HttpParams()
-      .set("MobileNumber", "966541114424");
+    const params = new HttpParams();
     const options = {
       headers,
       params,
       withCredentials: true
     };
-    return this.http.post('/api/web/user/login', `MobileNumber=${loginForm.MobileNumber}`, options)
-
-
-
-
+    return this.http.post(
+      "/api/web/user/login",
+      JSON.stringify({
+        MobileNumber: "MobileNumber.loginForm"
+      }),
+      options
+    );
   }
 
   register(user) {
-    return this.http.post(
-      "http://lava.sa/api/web/user/register",
-      {
-        AuthorizationKey: "as@dL8]Rn3$2S!anR",
-        FullName: "Turki Alomari",
-        MobileNumber: "966541114424",
-        CityID: "1",
-        RegionID: null,
-        Email: null,
-        NationalityID: null,
-        Language: null,
-        BirthDate: null
-      },
-      this.config.userOptions
-    );
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      AuthorizationKey: "as@dL8]Rn3$2S!anR"
+    });
+
+    const params = new HttpParams()
+    const options = {
+      headers,
+      params,
+      withCredentials: true
+    };
+    return this.http.post("/api/web/user/register", JSON.stringify({
+        AuthorizationKey: user.AuthorizationKey,
+        FullName: user.FullName,
+        MobileNumber: user.MobileNumber,
+        CityID: user.CityID,
+        RegionID: user.RegionID,
+        Email: user.Email,
+        NationalityID: user.NationalityID,
+        Language: user.Language,
+        BirthDate: user.BirthDate
+      }), options);
   }
 
   getAssets(accessToken) {

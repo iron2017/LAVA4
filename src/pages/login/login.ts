@@ -122,8 +122,7 @@ export class LoginPage {
       },
       error => {
         let alert = this.alertCtrl.create({
-          title: "Somthing went wrong !",
-          message: JSON.stringify(error),
+          message: error.error.errors,
           buttons: [
             {
               text: "cancel",
@@ -137,50 +136,6 @@ export class LoginPage {
         alert.present();
       }
     );
-    // .subscribe(res => {
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Enter verification code',
-    //     message: 'The code we sent to ' + this.signinForm.value.MobileNumber,
-    //     inputs: [
-    //       {
-    //         name: 'code',
-    //         placeholder: 'code',
-    //         type: 'number'
-    //       }
-    //     ],
-    //     buttons: [
-    //       {
-    //         text: 'cancel',
-    //         role: 'cancel',
-    //         handler: () => {
-    //           console.log('Cancel clicked');
-    //         }
-    //       },
-    //       {
-    //         text: 'Log in',
-    //         handler: () => {
-    //           this.navCtrl.setRoot(TabsPage);
-    //         }
-    //       }
-    //     ]
-    //   });
-    //   alert.present()
-    // }, error => {
-    //   let alert = this.alertCtrl.create({
-    //     title: 'Somthing went wrong !',
-    //     message: JSON.stringify(error),
-    //     buttons: [
-    //       {
-    //         text: 'cancel',
-    //         role: 'cancel',
-    //         handler: () => {
-    //           console.log('Cancel clicked');
-    //         }
-    //       }
-    //     ]
-    //   });
-    //   alert.present()
-    // });
   }
 
   onSignUp(user) {
@@ -216,8 +171,7 @@ export class LoginPage {
       },
       error => {
         let alert = this.alertCtrl.create({
-          title: "Somthing went wrong !",
-          message: JSON.stringify(error),
+          message: error.error.errors,
           buttons: [
             {
               text: "cancel",
