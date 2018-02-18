@@ -14,3 +14,12 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face {
+  font-family: 'AvenirLTStd';
+  src: url('../assets/fonts/AvenirLTStd-Black.otf'), url('../assets/fonts/AvenirLTStd-Book.otf'), url('../assets/fonts/AvenirLTStd-Heavy.otf'), url('../assets/fonts/AvenirLTStd-Medium.otf');
+}
+
+* {
+  font-family: 'AvenirLTStd', 'Roboto', Arial, Helvetica, sans-serif !important;
+}
