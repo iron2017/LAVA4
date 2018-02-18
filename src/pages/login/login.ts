@@ -92,6 +92,7 @@ export class LoginPage {
   onSignIn() {
     this.auth.login(this.signinForm.value).subscribe(
       res => {
+
         let alert = this.alertCtrl.create({
           title: "Enter verification code",
           message: "The code we sent to " + this.signinForm.value.MobileNumber,

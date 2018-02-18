@@ -50,7 +50,7 @@
           <p class="section-title">Start a Workout:</p>
 
           <ion-slides slidesPerView="2.2" id="Start-a-Workout">
-            <ion-slide class="workout" *ngFor="let workout of  user.workouts">
+            <ion-slide class="workout" *ngFor="let workout of  user.workouts" [navPush]="workoutPage" [navParams]="workout">
               <p class="workout-title">{{workout.title}}</p>
 
               <ion-row no-padding class="workout-container">

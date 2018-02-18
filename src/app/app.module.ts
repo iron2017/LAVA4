@@ -18,6 +18,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 
 import { LoginPage } from "../pages/login/login";
 import { AuthenticationProvider } from "../providers/authentication/authentication";
+import { WorkoutPage } from "../pages/workout/workout";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthenticationProvider } from "../providers/authentication/authenticati
     AddPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    WorkoutPage
   ],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpClientModule],
   bootstrap: [IonicApp],
@@ -40,7 +42,8 @@ import { AuthenticationProvider } from "../providers/authentication/authenticati
     AddPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    WorkoutPage
   ],
   providers: [
     StatusBar,

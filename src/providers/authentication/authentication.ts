@@ -34,7 +34,7 @@ export class AuthenticationProvider {
 
   login(loginForm) {
     const headers = new HttpHeaders({
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
       AuthorizationKey: "as@dL8]Rn3$2S!anR"
     });
     const params = new HttpParams();
@@ -45,9 +45,8 @@ export class AuthenticationProvider {
     };
     return this.http.post(
       "/api/web/user/login",
-      JSON.stringify({
-        MobileNumber: "MobileNumber.loginForm"
-      }),
+      `MobileNumber=${loginForm.MobileNumber}`,
+
       options
     );
   }

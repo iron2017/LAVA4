@@ -1,11 +1,13 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
+import { WorkoutPage } from "../workout/workout";
 
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
+  workoutPage = WorkoutPage;
   user = {
     name: "Sara Alhumaid",
     active: "Active Member",
@@ -20,7 +22,13 @@ export class HomePage {
         exercice: "tone muscies",
         time: "30 min",
         average: "1/wk",
-        state: "Sarted"
+        state: "Sarted",
+        exercices: [
+          {name:'Walk', meta: '10 mins Mis-Speed'},
+          {name:'Walk', meta: '10 mins Mis-Speed'},
+          {name:'Walk', meta: '10 mins Mis-Speed'},
+          {name:'Walk', meta: '10 mins Mis-Speed'},
+        ]
       },
       {
         title: "Upperbody Day",

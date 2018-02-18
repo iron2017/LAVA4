@@ -1,0 +1,115 @@
+page-workout {
+  .toolbar.toolbar-md,
+  .toolbar.toolbar-ios {
+    color: white !important;
+
+    background: transparent;
+    .toolbar-title.toolbar-title-md,
+    toolbar-title.toolbar-title-ios {
+      color: white !important;
+    }
+
+    ion-icon.back-button-icon.icon {
+      color: white;
+    }
+
+    .toolbar-background.toolbar-background-md,
+    .toolbar-background.toolbar-background-ios {
+      background: transparent;
+      color: white !important;
+
+      .back-button.bar-button {
+        color: white !important;
+
+        &.bar-button-md.back-button-md.bar-button-default.bar-button-default-md.show-back-button,
+        &.bar-button-ios.back-button-ios.bar-button-default.bar-button-default-ios.show-back-button {
+          color: white !important;
+        }
+      }
+    }
+  }
+
+  .exercices {
+    img {
+      width: 4em;
+      height: auto
+    }
+  }
+
+  #notification-button {
+    position: relative;
+    width: 42px;
+    top: 1px;
+    right: 1px;
+    overflow: visible !important;
+    font-size: 1.5em;
+    background: transparent;
+    border-radius: 100%;
+    padding: 0;
+    color: white;
+  }
+
+  #notifications-badge {
+    background-color: transparent;
+    font-size: 0.8em;
+    padding: 0px;
+    position: absolute;
+    top: calc(50% - 0.6em);
+    bottom: 0;
+    right: 0px;
+    font-weight: 200;
+  }
+
+  .header.header-md,
+  .header.header-ios {
+    background: #03a5c4;
+    color: white;
+
+    height: 40vh;
+    background: #03a5c4;
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 0 0 45% 45%;
+    width: 150vw;
+    padding: 0 30vw;
+    margin-left: -25vw;
+    box-shadow: 0 !important;
+
+    &:after {
+      background-image: none !important;
+    }
+  }
+
+  font-size: 75%;
+  padding: 0.8em;
+  margin: 0.3em;
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+  font-weight: 300;
+
+  text-align: left;
+
+  .workout-title {
+    font-size: 2.1em;
+    color: white;
+  }
+
+  .workout-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .workout-average {
+    color: white;
+    margin-top: 2em;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+  .workout-exercice {
+    font-size: 1.6em;
+  }
+}
