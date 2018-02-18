@@ -19,7 +19,6 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 
 import { LoginPage } from "../pages/login/login";
 import { AuthenticationProvider } from "../providers/authentication/authentication";
-import { LavaInterceptorProvider } from '../providers/lava-interceptor/lava-interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,7 @@ import { LavaInterceptorProvider } from '../providers/lava-interceptor/lava-inte
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthenticationProvider,
-    LavaInterceptorProvider,
+
   ]
 })
 export class AppModule {}
