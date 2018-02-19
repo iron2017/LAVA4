@@ -15,7 +15,8 @@ import { of } from "rxjs/observable/of";
 @Injectable()
 export class AuthenticationProvider {
   config = {
-    baseUrl: "/api/",
+    baseUrl: "http://lava.sa/api",
+
     AuthorizationKey: "as@dL8]Rn3$2S!anR",
     headers: new HttpHeaders({
       "Content-Type": "application/json",

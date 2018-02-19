@@ -4,24 +4,33 @@ page-home {
   #notification-button {
     position: relative;
     width: 42px;
-    top: 1px;
+    top: 0px;
     right: 1px;
     overflow: visible !important;
     font-size: 1.5em;
     background: transparent;
     border-radius: 100%;
     padding: 0;
+    margin: .5em;
     color: white;
   }
 
   #notifications-badge {
-    background-color: orange;
-    font-size: 0.3em;
-    padding: 2px;
+    background-color: transparent;
+    font-size: 0.6em;
+    padding: 0px;
     position: absolute;
-    bottom: 3px;
-    right: 9px;
-    border-radius: 100%;
+    top: calc(50% + 0.1em);
+    right: .1em;
+    font-weight: 200;
+    color:  white;
+    fill: white
+
+  }
+
+  #notifications-badge.badge.badge-ios, .badge.badge-md {
+    color:  #f8cb4f;
+
   }
 
   .user-container {
@@ -78,7 +87,7 @@ page-home {
     padding: 0.8em;
     margin: 0.3em;
     border-radius: 5px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     color: rgba(255,255,255,.7);
     font-weight: 300;
 
@@ -116,7 +125,7 @@ page-home {
     padding: 1em;
     margin: 0.3em;
     border-radius: 5px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     font-weight: 300;
 
     text-align: left;
@@ -128,6 +137,7 @@ page-home {
     }
     &.add-button {
       max-width: 6em;
+      height: initial;
 
       button {
         font-size: 2.8em;

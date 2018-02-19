@@ -1,11 +1,20 @@
 page-workout {
+
+  .fixed-content {
+    z-index: -2!important;
+  }
+  .scroll-content {
+    margin-top: 30vh!important;
+    z-index: 999;
+  }
+
   .toolbar.toolbar-md,
   .toolbar.toolbar-ios {
     color: white !important;
 
     background: transparent;
     .toolbar-title.toolbar-title-md,
-    toolbar-title.toolbar-title-ios {
+    .toolbar-title.toolbar-title-ios {
       color: white !important;
     }
 
@@ -30,22 +39,38 @@ page-workout {
   }
 
   .exercices {
+    // margin-top: -5em;
+    z-index: 99999999999!important;
     img {
       width: 4em;
       height: auto
+    }
+
+    .item-wrapper {
+      background: transparent;
+      margin: 1em auto;
+    }
+
+    .item.item-block {
+      border-radius: 1em;
+      // box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+      border: .5px solid black;
+
+
     }
   }
 
   #notification-button {
     position: relative;
     width: 42px;
-    top: 1px;
+    top: 0px;
     right: 1px;
     overflow: visible !important;
     font-size: 1.5em;
     background: transparent;
     border-radius: 100%;
     padding: 0;
+    margin: 0;
     color: white;
   }
 
@@ -54,14 +79,23 @@ page-workout {
     font-size: 0.8em;
     padding: 0px;
     position: absolute;
-    top: calc(50% - 0.6em);
-    bottom: 0;
+    top: calc(50% - 0.4em);
     right: 0px;
     font-weight: 200;
+    color:  white;
+    fill: white
+
   }
+
+  #notifications-badge.badge.badge-ios, .badge.badge-md {
+    color:  #f8cb4f;
+
+  }
+
 
   .header.header-md,
   .header.header-ios {
+    background: linear-gradient(#0c99d3, #03a5c4);
     background: #03a5c4;
     color: white;
 
@@ -94,6 +128,7 @@ page-workout {
   }
 
   .workout-container {
+
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -111,5 +146,23 @@ page-workout {
 
   .workout-exercice {
     font-size: 1.6em;
+  }
+
+
+  .finish-workout {
+
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    width: 50%;
+    padding: 2em;
+    margin: 0 auto;
+    margin-left:  calc(-50% / 2);
+    border-radius: 1.5em 1.5em 0 0;
+    background: linear-gradient(#0c99d3, #03a5c4);
+    color: white;
+
+    z-index: 999999!important ;
+
   }
 }

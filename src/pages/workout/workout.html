@@ -14,20 +14,20 @@
   </ion-navbar>
 
   <ion-row justify-content-between>
-  <p class="workout-title">{{workout?.title}}</p>
+    <p class="workout-title">{{workout?.title}}</p>
 
-      <button id="notification-button" ion-button clear>
-        <ion-icon name="text">
-          <ion-badge id="notifications-badge" clear>2</ion-badge>
-        </ion-icon>
-      </button>
+    <button id="notification-button" ion-button clear>
+      <ion-icon name="text">
+        <ion-badge id="notifications-badge" clear>2</ion-badge>
+      </ion-icon>
+    </button>
 
-    </ion-row>
+  </ion-row>
 
   <ion-row no-padding class="workout-container">
     <ion-col>
-        <p class="workout-exercice">{{workout?.exercice}}</p>
-        <p class="workout-time">{{workout?.time}}</p>
+      <p class="workout-exercice">{{workout?.exercice}}</p>
+      <p class="workout-time">{{workout?.time}}</p>
     </ion-col>
 
 
@@ -43,8 +43,12 @@
 
 
 <ion-content padding>
-  <ion-list  class="exercices">
-    <ion-item *ngFor="let exercice of workout?.exercices">
+  <ion-list class="exercices" no-lines>
+
+
+    <ion-item-sliding #slidingItem *ngFor="let exercice of workout?.exercices">
+      <ion-item #item (click)="open($event, slidingItem, item)">
+
         <ion-thumbnail item-left>
           <img src="assets/imgs/exerciceType.png">
         </ion-thumbnail>
@@ -57,6 +61,25 @@
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
         </ion-buttons>
-    </ion-item>
+      </ion-item>
+      <ion-item-options style="width: 75%" side="left">
+        <ion-row>
+          <ion-col>
+            <p>How many minutes?</p>
+            <p>- 10 +</p>
+          </ion-col>
+          <ion-col>
+            <p>Colories burned?</p>
+            <p>- 126 +</p>
+          </ion-col>
+          <button ion-button clear>
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+  <button ion-button class="finish-workout" (click)="finishWorkout()">Finish Workout</button>
+
+
 </ion-content>
