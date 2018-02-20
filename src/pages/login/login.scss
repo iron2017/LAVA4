@@ -1,6 +1,4 @@
 page-login {
-
-
   .login-img-container {
     height: 50vh;
     justify-content: center;
@@ -8,7 +6,6 @@ page-login {
     img {
       width: auto;
       height: 5em;
-
     }
   }
 
@@ -27,19 +24,63 @@ page-login {
   .gray-note {
     color: #999;
     margin: 0;
-    p {margin: 0;}
+    p {
+      margin: 0;
+    }
 
     button {
       color: black;
-      font-size: .9em;
+      font-size: 0.9em;
       text-transform: capitalize;
     }
   }
 
-  ::placeholder {
-    color: red;
-    text-align: center;
+  .shadow-input {
+    // width: 90%;
+    background: white;
+    margin: 0.5em;
+    padding: 0em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    border-radius: 0.2em;
+
+    &.gray {
+      background: #eeeeee;
+      box-shadow: none;
+    }
+
+    ion-icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-input,
+    ion-icon,
+    button {
+      margin: 0 auto;
+      padding: 0;
+      color: #555;
+
+
+      &[disabled] {
+        color: #999;
+      }
+    }
+    button {
+      font-size: 0.8em;
+      text-transform: capitalize;
+      color: #555;
+    }
+    ion-icon {
+      font-size: 2em;
+    }
+
+    ::placeholder {
+      color: #999;
+      text-align: center;
+      font-weight: lighter;
+    }
   }
-
-
 }

@@ -1,9 +1,16 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, AlertController } from "ionic-angular";
+import {
+  NavController,
+  NavParams,
+  AlertController,
+  LoadingController
+} from "ionic-angular";
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationProvider } from "../../providers/authentication/authentication";
 import { TabsPage } from "../tabs/tabs";
+import { ProfileProvider } from "../../providers/profile/profile";
+import { Observable } from "rxjs/Observable";
 
 /**
  * Generated class for the LoginPage page.
@@ -18,17 +25,29 @@ import { TabsPage } from "../tabs/tabs";
 })
 export class LoginPage {
   signupForm: FormGroup;
+  verifyForm: FormGroup;
   signinForm: FormGroup;
-  loginOrSignUp = true;
+  loginstate = "signin";
+
+  cities$: Observable<Object>;
+
+
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     private auth: AuthenticationProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private profileProvider: ProfileProvider,
+    public loadingCtrl: LoadingController
   ) {
     this.signinForm = formBuilder.group({
       MobileNumber: ["", Validators.required]
+    });
+    this.verifyForm = formBuilder.group({
+      MobileNumber: ["", Validators.required],
+      VerifyNumber: ["", Validators.required]
     });
 
     // "AuthorizationKey":"as@dL8]Rn3$2S!anR",
@@ -42,14 +61,14 @@ export class LoginPage {
     // "BirthDate":null
 
     this.signupForm = formBuilder.group({
-      FullName: [
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(30),
-          Validators.pattern(/[a-zA-Z0-9_]+/)
-        ])
-      ],
+      // FullName: [
+      //   "",
+      //   Validators.compose([
+      //     Validators.required,
+      //     Validators.maxLength(30),
+      //     Validators.pattern(/[a-zA-Z0-9_]+/)
+      //   ])
+      // ],
       MobileNumber: [
         "",
         Validators.compose([
@@ -59,7 +78,7 @@ export class LoginPage {
         ])
       ],
       CityID: [
-        "",
+        "Choose your city",
         Validators.compose([
           Validators.required,
           Validators.maxLength(30),
@@ -87,43 +106,64 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
+
+    this.cities$ = this.profileProvider.getCities();
   }
 
   onSignIn() {
+    let loading = this.loadingCtrl.create({
+      spinner: "hide",
+      content: "Please Wait..."
+    });
+    loading.present();
+
     this.auth.login(this.signinForm.value).subscribe(
       res => {
+        loading.dismiss();
+        if (this.loginstate == "signin") {
+          this.loginstate = "verify";
 
-        let alert = this.alertCtrl.create({
-          title: "Enter verification code",
-          message: "The code we sent to " + this.signinForm.value.MobileNumber,
-          inputs: [
-            {
-              name: "code",
-              placeholder: "code",
-              type: "number"
-            }
-          ],
-          buttons: [
-            {
-              text: "cancel",
-              role: "cancel",
-              handler: () => {
-                console.log("Cancel clicked");
-              }
-            },
-            {
-              text: "Log in",
-              handler: () => {
-                this.navCtrl.setRoot(TabsPage);
-              }
-            }
-          ]
-        });
-        alert.present();
+          this.verifyForm.controls.MobileNumber.setValue(
+            this.signinForm.value.MobileNumber
+          );
+
+          return;
+        }
+        this.navCtrl.setRoot(TabsPage);
+
+        // let alert = this.alertCtrl.create({
+        //   title: "Enter verification code",
+        //   message: "The code we sent to " + this.signinForm.value.MobileNumber,
+        //   inputs: [
+        //     {
+        //       name: "code",
+        //       placeholder: "code",
+        //       type: "number"
+        //     }
+        //   ],
+        //   buttons: [
+        //     {
+        //       text: "cancel",
+        //       role: "cancel",
+        //       handler: () => {
+        //         console.log("Cancel clicked");
+        //       }
+        //     },
+        //     {
+        //       text: "Log in",
+        //       handler: () => {
+        //         this.navCtrl.setRoot(TabsPage);
+        //       }
+        //     }
+        //   ]
+        // });
+        // alert.present();
       },
       error => {
+        loading.dismiss();
         let alert = this.alertCtrl.create({
-          message: error.error.errors,
+          // message: error.error.errors,
+          message: error.error.errors || "Check your network connection !",
           buttons: [
             {
               text: "cancel",
@@ -140,39 +180,49 @@ export class LoginPage {
   }
 
   onSignUp(user) {
+    let loading = this.loadingCtrl.create({
+      spinner: "hide",
+      content: "Please Wait..."
+    });
+    loading.present();
     this.auth.register(this.signupForm.value).subscribe(
       res => {
-        let alert = this.alertCtrl.create({
-          title: "Enter verification code",
-          message: "The code we sent to " + this.signupForm.value.MobileNumber,
-          inputs: [
-            {
-              name: "code",
-              placeholder: "code",
-              type: "number"
-            }
-          ],
-          buttons: [
-            {
-              text: "cancel",
-              role: "cancel",
-              handler: () => {
-                console.log("Cancel clicked");
-              }
-            },
-            {
-              text: "Log in",
-              handler: () => {
-                this.navCtrl.setRoot(TabsPage);
-              }
-            }
-          ]
-        });
-        alert.present();
+        loading.dismiss();
+        this.loginstate = "verify";
+        return;
+        // let alert = this.alertCtrl.create({
+        //   title: "Enter verification code",
+        //   message: "The code we sent to " + this.signupForm.value.MobileNumber,
+        //   inputs: [
+        //     {
+        //       name: "code",
+        //       placeholder: "code",
+        //       type: "number"
+        //     }
+        //   ],
+        //   buttons: [
+        //     {
+        //       text: "cancel",
+        //       role: "cancel",
+        //       handler: () => {
+        //         console.log("Cancel clicked");
+        //       }
+        //     },
+        //     {
+        //       text: "Log in",
+        //       handler: () => {
+        //         this.navCtrl.setRoot(TabsPage);
+        //       }
+        //     }
+        //   ]
+        // });
+        // alert.present();
       },
       error => {
+        loading.dismiss();
         let alert = this.alertCtrl.create({
-          message: error.error.errors,
+          // message: error.error.errors,
+          message: error.error.errors || "Check your network connection !",
           buttons: [
             {
               text: "cancel",
@@ -188,8 +238,13 @@ export class LoginPage {
     );
   }
 
-  toggleShowLogin($event) {
+  // toggleShowLogin($event) {
+  //   $event.preventDefault();
+  //   this.loginOrSignUp = !this.loginOrSignUp;
+  // }
+
+  nextloginstate($event, nextstate) {
     $event.preventDefault();
-    this.loginOrSignUp = !this.loginOrSignUp;
+    this.loginstate = nextstate;
   }
 }

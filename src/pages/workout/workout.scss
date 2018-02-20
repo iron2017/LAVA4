@@ -19,7 +19,7 @@ page-workout {
     }
 
     ion-icon.back-button-icon.icon {
-      color: white;
+      color: white !important;
     }
 
     .toolbar-background.toolbar-background-md,
@@ -47,14 +47,18 @@ page-workout {
     }
 
     .item-wrapper {
-      background: transparent;
-      margin: 1em auto;
+      background: white;
+      margin: .8em auto;
+      border-radius: 1em;
+      // box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+      border: .5px solid black;
     }
 
     .item.item-block {
       border-radius: 1em;
+
       // box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-      border: .5px solid black;
+      // border: .5px solid black;
 
 
     }
@@ -71,19 +75,19 @@ page-workout {
     border-radius: 100%;
     padding: 0;
     margin: 0;
-    color: white;
+    color: rgba(255, 255, 255, 0.7)!important;
   }
 
   #notifications-badge {
-    background-color: transparent;
+    background-color: transparent  !important;
     font-size: 0.8em;
     padding: 0px;
     position: absolute;
     top: calc(50% - 0.4em);
     right: 0px;
     font-weight: 200;
-    color:  white;
-    fill: white
+    color: rgba(255, 255, 255, 0.8)!important;
+
 
   }
 
@@ -97,11 +101,11 @@ page-workout {
   .header.header-ios {
     background: linear-gradient(#0c99d3, #03a5c4);
     background: #03a5c4;
-    color: white;
+    color: white  !important;
 
     height: 40vh;
     background: #03a5c4;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9)  !important;
     border-radius: 0 0 45% 45%;
     width: 150vw;
     padding: 0 30vw;
@@ -124,7 +128,7 @@ page-workout {
 
   .workout-title {
     font-size: 2.1em;
-    color: white;
+    color: white  !important;
   }
 
   .workout-container {
@@ -132,9 +136,11 @@ page-workout {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    color: rgba(255, 255, 255, 0.7)!important;
+    font-weight: 300;
   }
   .workout-average {
-    color: white;
+    color: white  !important;
     margin-top: 2em;
   }
 
@@ -160,9 +166,61 @@ page-workout {
     margin-left:  calc(-50% / 2);
     border-radius: 1.5em 1.5em 0 0;
     background: linear-gradient(#0c99d3, #03a5c4);
-    color: white;
+    color: white  !important;
 
     z-index: 999999!important ;
 
   }
+
+  // .item-wrapper active-sliding active-slide active-options-left
+
+
+  .slide-options {
+
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      text-align: center;
+      width: 100%;
+
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-col {
+      display: flex;
+      flex-flow: nowrap column;
+      justify-content: cneter;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    ion-row {
+      display: flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+    .option-title {
+      font-size: 65%;
+    }
+
+    ion-icon {
+      font-size: 2em;
+      padding: .5em;
+      margin: 0;
+      display: flex;
+      height: 100%;
+    }
+  }
+
 }

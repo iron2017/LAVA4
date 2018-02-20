@@ -5,30 +5,75 @@
   </ion-row>
 
 
-  <form [formGroup]="signinForm" (ngSubmit)="onSignIn()" *ngIf="loginOrSignUp">
+  <form [formGroup]="signinForm" (ngSubmit)="onSignIn()" *ngIf="loginstate == 'signin'">
     <ion-row align-items-center>
       <button ion-button clear id="activeBtn">Sign in</button>
     </ion-row>
-    <ion-row justify-content-center>
-      <ion-col col-1>
-          <ion-icon name="phone-portrait"></ion-icon>
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-1 align-self-center>
+        <ion-icon name="ios-phone-portrait-outline"></ion-icon>
       </ion-col>
-      <ion-col  col-auto>
+      <ion-col col-9 align-self-left>
         <ion-input text-center formControlName="MobileNumber" type="text" placeholder="Enter your phone number"></ion-input>
       </ion-col>
     </ion-row>
-    <!-- <ion-row>
-      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
-    </ion-row> -->
 
-    <ion-row  justify-content-center class="gray-note">
+    <ion-row justify-content-center class="gray-note">
 
       <ion-col col-auto>
         <p>Don't Have an account?</p>
       </ion-col>
 
       <ion-col col-auto>
-        <button ion-button clear (click)="toggleShowLogin($event)">Sign up</button>
+        <button ion-button clear (click)="nextloginstate($event, 'signup')">Sign up</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+
+  <form [formGroup]="verifyForm" (ngSubmit)="onSignIn()" *ngIf="loginstate == 'verify'">
+
+    <ion-row align-items-center>
+      <button ion-button clear id="activeBtn">Sign in</button>
+    </ion-row>
+
+    <ion-row justify-content-center class="shadow-input gray">
+      <ion-col col-3 align-self-center>
+        <ion-icon disabled name="ios-phone-portrait-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-6 align-self-center>
+        <ion-input disabled text-center formControlName="MobileNumber" type="text" placeholder="Enter your phone number"></ion-input>
+      </ion-col>
+      <ion-col col-3 align-self-center>
+        <button ion-button clear (click)="nextloginstate($event, 'signin')">change</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="gray-note" padding>
+      <p>We sent you an activation code</p>
+    </ion-row>
+
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-3 align-self-center>
+        <ion-icon name="ios-text-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-6 align-self-center>
+        <ion-input text-center formControlName="VerifyNumber" type="number" placeholder="_ _ _ _"></ion-input>
+      </ion-col>
+      <ion-col col-3 align-self-center>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row justify-content-center class="gray-note">
+
+      <ion-col col-auto>
+        <p>Don't Have an account?</p>
+      </ion-col>
+
+      <ion-col col-auto>
+        <button ion-button clear (click)="nextloginstate($event, 'signup')">Sign up</button>
       </ion-col>
     </ion-row>
   </form>
@@ -47,21 +92,39 @@
   }
 -->
 
-  <form [formGroup]="signupForm" (ngSubmit)="onSignUp()" *ngIf="!loginOrSignUp">
+  <form [formGroup]="signupForm" (ngSubmit)="onSignUp()" *ngIf="loginstate == 'signup'">
 
     <ion-row align-items-center>
       <button ion-button clear id="activeBtn" type="submit">Sign up</button>
     </ion-row>
 
-    <ion-row>
+    <!-- <ion-row  class="shadow-input">
       <ion-input text-center formControlName="FullName" type="text" placeholder="Full Name"></ion-input>
+    </ion-row> -->
+
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-1 align-self-center>
+        <ion-icon name="ios-phone-portrait-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-9 align-self-left>
+        <ion-input text-center formControlName="MobileNumber" type="text" placeholder="Enter your phone number"></ion-input>
+      </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-input text-center formControlName="MobileNumber" type="text" placeholder="Mobile Number"></ion-input>
+
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-1 align-self-center>
+        <ion-icon name="ios-map-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-9 align-self-left>
+        <!-- <ion-input text-center formControlName="CityID" type="text" placeholder="Choose your city"></ion-input> -->
+        <ion-select text-center formControlName="CityID"  style="width: 100%; margin: 0; max-width: 100%; color: #999!important;">
+          <ion-option style="width: 100%; margin: 0; ">Choose your city</ion-option>
+          <ion-option *ngFor="let city of cities$ | async" [value]="city.ID" selectedText="city.NameEN"></ion-option>
+          <!-- <ion-option *ngFor="let city of cities$ | async" [value]="city.ID"></ion-option> -->
+        </ion-select>
+      </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-input text-center formControlName="CityID" type="text" placeholder="City ID"></ion-input>
-    </ion-row>
+
     <!-- <ion-row>
       <ion-input formControlName="RegionID" type="text" placeholder="Region ID"></ion-input>
     </ion-row>
@@ -80,16 +143,16 @@
 
 
 
-    <ion-row  justify-content-center class="gray-note">
+    <ion-row justify-content-center class="gray-note">
 
-        <ion-col col-auto>
-          <p>Alredy Have an account?</p>
-        </ion-col>
+      <ion-col col-auto>
+        <p>Alredy Have an account?</p>
+      </ion-col>
 
-        <ion-col col-auto>
-          <button ion-button clear (click)="toggleShowLogin($event)">Sign in</button>
-        </ion-col>
-      </ion-row>
+      <ion-col col-auto>
+        <button ion-button clear (click)="nextloginstate($event, 'signin')">Sign in</button>
+      </ion-col>
+    </ion-row>
 
 
   </form>

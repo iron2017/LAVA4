@@ -32,12 +32,12 @@
 
 
   </ion-row>
-  <ion-row no-padding>
+  <!-- <ion-row no-padding>
     <ion-col no-padding>
       <p class="workout-average">{{workout?.average}}</p>
       <p class="workout-state">{{workout?.state}}</p>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
 </ion-header>
 
@@ -62,18 +62,38 @@
           </button>
         </ion-buttons>
       </ion-item>
-      <ion-item-options style="width: 75%" side="left">
-        <ion-row>
+      <ion-item-options style="width: 75%" side="left" class="slide-options">
+        <ion-row justify-content-center>
           <ion-col>
-            <p>How many minutes?</p>
-            <p>- 10 +</p>
+            <p class="option-title">How many minutes?</p>
+            <ion-row justify-content-center>
+              <ion-col col-3>
+                <button ion-button clear>-</button>
+              </ion-col>
+              <ion-col  col-5>
+                <p>125</p>
+              </ion-col>
+              <ion-col  col-3>
+                <button ion-button clear>+</button>
+              </ion-col>
+            </ion-row>
           </ion-col>
           <ion-col>
-            <p>Colories burned?</p>
-            <p>- 126 +</p>
+            <p  class="option-title">Colories burned?</p>
+            <ion-row justify-content-center>
+                <ion-col col-3>
+                    <button ion-button clear>-</button>
+                  </ion-col>
+                  <ion-col  col-5>
+                    <p>125</p>
+                  </ion-col>
+                  <ion-col  col-3>
+                    <button ion-button clear>+</button>
+                  </ion-col>
+            </ion-row>
           </ion-col>
           <button ion-button clear>
-            <ion-icon name="checkmark-circle"></ion-icon>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
           </button>
         </ion-row>
       </ion-item-options>

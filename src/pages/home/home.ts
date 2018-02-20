@@ -19,7 +19,7 @@ export class HomePage {
     workouts: [
       {
         title: "Upperbody Day",
-        exercice: "tone muscies",
+        exercice: "Tone muscies",
         time: "30 min",
         average: "1/wk",
         state: "Sarted",

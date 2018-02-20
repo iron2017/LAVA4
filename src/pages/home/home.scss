@@ -12,7 +12,7 @@ page-home {
     border-radius: 100%;
     padding: 0;
     margin: .5em;
-    color: white;
+    color: white !important;
   }
 
   #notifications-badge {
@@ -23,13 +23,13 @@ page-home {
     top: calc(50% + 0.1em);
     right: .1em;
     font-weight: 200;
-    color:  white;
+    color:  white !important;
     fill: white
 
   }
 
   #notifications-badge.badge.badge-ios, .badge.badge-md {
-    color:  #f8cb4f;
+    color:  #f8cb4f !important;
 
   }
 
@@ -45,7 +45,7 @@ page-home {
       padding: 0;
       margin: 0;
       text-align: center;
-      color: rgba(255,255,255,.7)
+      color: rgba(255,255,255,.7) !important;
     }
   }
 
@@ -61,7 +61,7 @@ page-home {
     .floors,
     .steps {
       font-size: 0.8em;
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.7) !important;
 
 
       ion-row {
@@ -70,7 +70,7 @@ page-home {
         ion-icon {
             margin: 0 .2em;
         }
-        color: white;
+        color: white !important;
 
       p {
         padding: .5em;
@@ -82,20 +82,20 @@ page-home {
 
   .workout {
     background: #03a5c4;
-    color: white;
+    color: white !important;
     font-size: 75%;
     padding: 0.8em;
     margin: 0.3em;
     border-radius: 5px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    color: rgba(255,255,255,.7);
+    color: rgba(255,255,255,.7) !important;
     font-weight: 300;
 
     text-align: left;
 
     .workout-title {
       font-size: 1.1em;
-      color: white;
+      color: white !important;
     }
 
     .workout-container {
@@ -105,7 +105,7 @@ page-home {
 
     }
     .workout-average {
-      color: white;
+      color: white !important;
       margin-top: 2em;
     }
 
@@ -120,7 +120,7 @@ page-home {
 
   .booking {
     background: white;
-    color: #666;
+    color: #666 !important;
     font-size: 75%;
     padding: 1em;
     margin: 0.3em;
@@ -133,7 +133,7 @@ page-home {
     .workout-title {
       font-weight: 400;
       font-size: 1.1em;
-      color: #444;
+      color: #444 !important;
     }
     &.add-button {
       max-width: 6em;
@@ -149,7 +149,7 @@ page-home {
         ion-icon {
           font-weight: 200;
           height: 100%;
-          color: #666
+          color: #666!important;
         }
       }
 
@@ -165,7 +165,7 @@ page-home {
   .lava-header {
     height: 40vh;
     background: #03a5c4;
-    color: rgba(255,255,255,.9);
+    color: rgba(255,255,255,.9) !important;
     border-radius: 0 0 45% 45%;
     width: 150vw;
     padding: 0 30vw;
