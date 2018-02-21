@@ -31,8 +31,6 @@ export class LoginPage {
 
   cities$: Observable<Object>;
 
-
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -108,6 +106,7 @@ export class LoginPage {
     console.log("ionViewDidLoad LoginPage");
 
     this.cities$ = this.profileProvider.getCities();
+    this.cities$.subscribe(res =>  console.log(JSON.stringify(res)))
   }
 
   onSignIn() {
@@ -116,48 +115,46 @@ export class LoginPage {
       content: "Please Wait..."
     });
     loading.present();
-
     this.auth.login(this.signinForm.value).subscribe(
       res => {
         loading.dismiss();
-        if (this.loginstate == "signin") {
-          this.loginstate = "verify";
+        this.loginstate = "verify";
+        this.auth.config.AccessToken = (res as any).data.AccessToken;
+        this.verifyForm.controls.MobileNumber.setValue(
+          this.signinForm.value.MobileNumber
+        );
+      },
+      error => {
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          // message: error.error.errors,
+          message: error.error.errors || "Check your network connection !",
+          buttons: [
+            {
+              text: "cancel",
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+    );
+  }
 
-          this.verifyForm.controls.MobileNumber.setValue(
-            this.signinForm.value.MobileNumber
-          );
-
-          return;
-        }
+  onVerify() {
+    let loading = this.loadingCtrl.create({
+      spinner: "hide",
+      content: "Please Wait..."
+    });
+    loading.present();
+    this.auth.verify(this.verifyForm.value).subscribe(
+      res => {
+        loading.dismiss();
+        this.auth.config.AccessToken = (res as any).data.AccessToken;
         this.navCtrl.setRoot(TabsPage);
-
-        // let alert = this.alertCtrl.create({
-        //   title: "Enter verification code",
-        //   message: "The code we sent to " + this.signinForm.value.MobileNumber,
-        //   inputs: [
-        //     {
-        //       name: "code",
-        //       placeholder: "code",
-        //       type: "number"
-        //     }
-        //   ],
-        //   buttons: [
-        //     {
-        //       text: "cancel",
-        //       role: "cancel",
-        //       handler: () => {
-        //         console.log("Cancel clicked");
-        //       }
-        //     },
-        //     {
-        //       text: "Log in",
-        //       handler: () => {
-        //         this.navCtrl.setRoot(TabsPage);
-        //       }
-        //     }
-        //   ]
-        // });
-        // alert.present();
       },
       error => {
         loading.dismiss();
@@ -189,6 +186,7 @@ export class LoginPage {
       res => {
         loading.dismiss();
         this.loginstate = "verify";
+        this.auth.config.AccessToken = (res as any).data.AccessToken;
         return;
         // let alert = this.alertCtrl.create({
         //   title: "Enter verification code",

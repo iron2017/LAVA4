@@ -1,5 +1,5 @@
 <!--
-  Generated template for the StarPage page.
+  Generated template for the WorkoutPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,72 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Star</ion-title>
+    <ion-title>Workout</ion-title>
+
+
+
   </ion-navbar>
+
+
+
+  <ion-row class="schedules">
+    <ion-col>
+      <ion-card>
+        <button ion-button clear>
+          <ion-icon name="ios-expand"></ion-icon>
+        </button>
+        <h6>Fitness Class Schedule</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card>
+        <button ion-button clear>
+          <ion-icon name="ios-expand"></ion-icon>
+        </button>
+        <h6>Swiming Class Schedule</h6>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row no-padding>
+    <ion-col no-padding>
+      <p class="workout-average">{{workout?.average}}</p>
+      <p class="workout-state">{{workout?.state}}</p>
+    </ion-col>
+  </ion-row> -->
 
 </ion-header>
 
 
 <ion-content padding>
+  <h2>Sessions: </h2>
+  <ion-row class="sessions">
+    <ion-col col-auto *ngFor="let session of ['Message','Weight Loss', 'Measurement', 'Spa', 'Physical Therapy', 'Nutrisins', 'Follow up', 'Obsesity Therapy']">
+      <ion-card>
+
+        <ion-card-title>{{session}}</ion-card-title>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-col class="booking">
+    <ion-card>
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="assets/imgs/cycle.png">
+        </ion-thumbnail>
+        <h2>Book a fittness class</h2>
+        <p>Zamba, Yoga, Dancing, Cycle, ...etc</p>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="assets/imgs/relax.png">
+        </ion-thumbnail>
+        <h2>Book a session</h2>
+        <p>Massage, Facial treatment, ...etc</p>
+      </ion-item>
+    </ion-card>
+  </ion-col>
 
 </ion-content>

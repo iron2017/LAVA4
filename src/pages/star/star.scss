@@ -1,3 +1,108 @@
 page-star {
 
+  .toolbar.toolbar-md,
+  .toolbar.toolbar-ios {
+    color: white !important;
+
+    background: transparent;
+    .toolbar-title.toolbar-title-md,
+    .toolbar-title.toolbar-title-ios {
+      color: white !important;
+    }
+
+    ion-icon.back-button-icon.icon {
+      color: white !important;
+    }
+
+    .toolbar-background.toolbar-background-md,
+    .toolbar-background.toolbar-background-ios {
+      background: transparent;
+      color: white !important;
+
+      .back-button.bar-button {
+        color: white !important;
+
+        &.bar-button-md.back-button-md.bar-button-default.bar-button-default-md.show-back-button,
+        &.bar-button-ios.back-button-ios.bar-button-default.bar-button-default-ios.show-back-button {
+          color: white !important;
+        }
+      }
+    }
+
+  }
+
+  ion-navbar {
+    background: #03a5c4!important;
+    padding-bottom: 10em!important;
+
+    border-radius: 0 0 40% 40%;
+
+    color: white;
+
+    .toolbar-background.toolbar-background-ios,
+    .toolbar-background.toolbar-background-ios {
+      background: #03a5c4!important;
+      padding-bottom: 5em!important;
+    }
+  }
+
+
+  .schedules {
+    padding: 0;
+    margin: 0;
+    margin-top: -5em;
+
+    ion-row {
+      padding: 0;
+      margin: 0;
+    }
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column nowrap;
+
+      text-align: center;
+
+      padding: 0;
+      margin: 0;
+
+      ion-card {
+        padding: 1.5em 0;
+        padding-top: 0;
+      }
+
+      button {
+        margin: 0 auto;
+        width: 100%;
+        font-size: 1em;
+        background: transparent;
+        padding: 0!important;
+        margin: 0!important;
+
+        ion-icon {
+          padding: 0;
+          margin: 0 auto;
+        }
+      }
+
+      h6 {
+        font-size: .8em;
+      }
+    }
+  }
+
+  .sessions {
+    ion-col {
+      padding: 0;
+      margin: 0;
+    }
+    ion-card {
+      ion-card-title {
+        margin: 0;
+        padding: .125em .5em;
+        font-size: .8em;
+      }
+    }
+  }
 }

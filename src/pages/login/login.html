@@ -32,7 +32,7 @@
 
 
 
-  <form [formGroup]="verifyForm" (ngSubmit)="onSignIn()" *ngIf="loginstate == 'verify'">
+  <form [formGroup]="verifyForm" (ngSubmit)="onVerify()" *ngIf="loginstate == 'verify'">
 
     <ion-row align-items-center>
       <button ion-button clear id="activeBtn">Sign in</button>
@@ -98,9 +98,6 @@
       <button ion-button clear id="activeBtn" type="submit">Sign up</button>
     </ion-row>
 
-    <!-- <ion-row  class="shadow-input">
-      <ion-input text-center formControlName="FullName" type="text" placeholder="Full Name"></ion-input>
-    </ion-row> -->
 
     <ion-row justify-content-center class="shadow-input">
       <ion-col col-1 align-self-center>
@@ -116,32 +113,12 @@
         <ion-icon name="ios-map-outline"></ion-icon>
       </ion-col>
       <ion-col col-9 align-self-left>
-        <!-- <ion-input text-center formControlName="CityID" type="text" placeholder="Choose your city"></ion-input> -->
         <ion-select text-center formControlName="CityID"  style="width: 100%; margin: 0; max-width: 100%; color: #999!important;">
           <ion-option style="width: 100%; margin: 0; ">Choose your city</ion-option>
-          <ion-option *ngFor="let city of cities$ | async" [value]="city.ID" selectedText="city.NameEN"></ion-option>
-          <!-- <ion-option *ngFor="let city of cities$ | async" [value]="city.ID"></ion-option> -->
+          <ion-option *ngFor="let city of (cities$ | async)?.data" [value]="city.ID">{{city.NameEN}}</ion-option>
         </ion-select>
       </ion-col>
     </ion-row>
-
-    <!-- <ion-row>
-      <ion-input formControlName="RegionID" type="text" placeholder="Region ID"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="Email" type="email" placeholder="Email"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="NationalityID" type="text" placeholder="Nationality ID"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="Language" type="text" placeholder="Language"></ion-input>
-    </ion-row>
-    <ion-row>
-      <ion-input formControlName="BirthDate" type="text" placeholder="Birth Date"></ion-input>
-    </ion-row> -->
-
-
 
     <ion-row justify-content-center class="gray-note">
 
