@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { LavaProvider } from '../../providers/lava/lava';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the BookPage page.
@@ -14,12 +16,23 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'book.html',
 })
 export class BookPage {
+  _book: any;
   done = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  sessions$: Observable<Object>;
+  classes$: Observable<Object>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private lavaProvider: LavaProvider) {
+    this._book = navParams.get('book');
+
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookPage');
+
+    console.log(this._book);
+    this.classes$ = this.lavaProvider.getClasses();
+    this.sessions$ = this.lavaProvider.getMassageReservations();
   }
 
 
@@ -29,10 +42,9 @@ export class BookPage {
 
   book(){
     this.done = true;
-
     setTimeout(()=> {
       this.navCtrl.pop();
-    }, 800)
+    }, 1800)
   }
 
 }
