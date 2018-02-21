@@ -215,20 +215,20 @@ export class ProfileProvider {
     if (this.authProvider.config.debug) {
       return of({
         status: 1,
-        data: [
-          {
-            ID: 1,
-            NameAR: "العلیا",
-            NameEN: "Al Olya",
-            CityID: 1
-          },
-          {
-            ID: 2,
-            NameAR: "السلیمانیة",
-            NameEN: "Al Solimania",
-            CityID: 1
+        data: {
+          BranchID: 1,
+          StartDate: "2017-11-15",
+          EndDate: "2018-11-10",
+          CreationDate: "2016-09-25 00:00:00",
+          Period: 360,
+          Services: {
+            "2": 2,
+            "4": 2,
+            "5": 2,
+            "6": 3,
+            "7": 6
           }
-        ]
+        }
       });
     }
     return this.http.get(

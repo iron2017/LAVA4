@@ -22,6 +22,7 @@ import { LoginPage } from "../pages/login/login";
 import { AuthenticationProvider } from "../providers/authentication/authentication";
 import { WorkoutPage } from "../pages/workout/workout";
 import { ProfileProvider } from "../providers/profile/profile";
+import { LavaProvider } from '../providers/lava/lava';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ProfileProvider } from "../providers/profile/profile";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthenticationProvider,
-    ProfileProvider
+    ProfileProvider,
+    LavaProvider
   ]
 })
 export class AppModule {}
