@@ -23,6 +23,8 @@ import { AuthenticationProvider } from "../providers/authentication/authenticati
 import { WorkoutPage } from "../pages/workout/workout";
 import { ProfileProvider } from "../providers/profile/profile";
 import { LavaProvider } from '../providers/lava/lava';
+import { ClassShedulePage } from "../pages/class-shedule/class-shedule";
+import { BookPage } from "../pages/book/book";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { LavaProvider } from '../providers/lava/lava';
     TabsPage,
     LoginPage,
     WorkoutPage,
-    FinishWorkoutPage
+    FinishWorkoutPage,
+    ClassShedulePage,
+    BookPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ import { LavaProvider } from '../providers/lava/lava';
     TabsPage,
     LoginPage,
     WorkoutPage,
-    FinishWorkoutPage
+    FinishWorkoutPage,
+    ClassShedulePage,
+    BookPage
   ],
   providers: [
     StatusBar,

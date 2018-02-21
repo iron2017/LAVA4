@@ -1,4 +1,4 @@
-page-star {
+page-class-shedule {
   .toolbar.toolbar-md,
   .toolbar.toolbar-ios {
     color: white !important;
@@ -44,16 +44,17 @@ page-star {
     }
   }
 
-
   ion-content {
-    padding-top: 1em;
-    margin-top: 1em;
+    padding-top: 0em;
+    margin-top: 0em;
   }
 
   .schedules {
     padding: 0;
     margin: 0;
-    margin-top: -5em;
+    margin-top: -10em;
+      display: relative;
+
 
     ion-row {
       padding: 0;
@@ -71,13 +72,16 @@ page-star {
       margin: 0;
 
       ion-card {
-        padding: 1.5em 0;
-        padding-top: 0;
+        padding: 7em 0;
+        // padding-top: 0;
       }
 
       button {
+        position: absolute;
+        top: .5em;
+        left: 1.5em;
         margin: 0 auto;
-        width: 100%;
+        // width: 100%;
         font-size: 1.5em;
         background: transparent;
         padding: 0 !important;
@@ -90,7 +94,7 @@ page-star {
       }
 
       h6 {
-        font-size: 0.8em;
+        font-size: 2em;
       }
     }
   }
@@ -117,7 +121,7 @@ page-star {
     margin: 0.3em;
     border-radius: 5px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    color: rgba(255,255,255,.7) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
     font-weight: 300;
 
     text-align: left;
@@ -131,7 +135,6 @@ page-star {
       display: flex;
       justify-content: space-between;
       width: 100%;
-
     }
     .workout-average {
       color: white !important;
@@ -142,11 +145,8 @@ page-star {
       padding: 0;
       margin: 0;
       text-align: left;
-
-
     }
   }
-
 
   .booking {
     background: white;
@@ -173,7 +173,7 @@ page-star {
 
       button {
         font-size: 2.8em;
-        padding: .1em;
+        padding: 0.1em;
         margin: 0;
         font-weight: 200;
         width: 100%;
@@ -181,28 +181,24 @@ page-star {
         ion-icon {
           font-weight: 200;
           height: 100%;
-          color: #666!important;
+          color: #666 !important;
         }
       }
-
-
-
     }
   }
 
   .sessions {
-
     ion-card {
-      margin-top: 2em;
+      margin-top: 1em;
     }
 
     ion-item {
-      background: linear-gradient(to right, #0ca3ad, #03c3d8) !important;
+      // background: linear-gradient(to right, #0ca3ad, #03c3d8) !important;
       h2 {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(0, 0, 0, 0.9);
       }
       p {
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(0, 0, 0, 0.6);
       }
     }
   }

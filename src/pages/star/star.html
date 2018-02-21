@@ -17,7 +17,7 @@
 
   <ion-row class="schedules">
     <ion-col>
-      <ion-card>
+      <ion-card [navPush]="classShedule" [navParams]="'Fitness'">
         <button ion-button clear>
           <ion-icon name="ios-expand"></ion-icon>
         </button>
@@ -25,7 +25,7 @@
       </ion-card>
     </ion-col>
     <ion-col>
-      <ion-card>
+      <ion-card [navPush]="classShedule" [navParams]="'Swiming'">
         <button ion-button clear>
           <ion-icon name="ios-expand"></ion-icon>
         </button>
@@ -45,17 +45,49 @@
 
 <ion-content padding>
   <h2>Sessions: </h2>
-  <ion-row class="sessions">
+  <!-- <ion-row class="sessions">
     <ion-col col-auto *ngFor="let session of ['Message','Weight Loss', 'Measurement', 'Spa', 'Physical Therapy', 'Nutrisins', 'Follow up', 'Obsesity Therapy']">
       <ion-card>
 
         <ion-card-title>{{session}}</ion-card-title>
       </ion-card>
     </ion-col>
+  </ion-row> -->
+  <ion-row>
+
+    <ion-slides slidesPerView="2.9" id="Start-a-Workout">
+      <ion-slide class="workout booking" *ngFor="let booking of bookings$ ">
+        <p class="workout-title">{{booking.title}}</p>
+
+
+        <ion-row no-padding>
+          <ion-col no-padding>
+            <p class="workout-state">{{booking.duration}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row no-padding class="workout-container">
+          <ion-col no-padding col-auto>
+            <p class="workout-exercice">{{booking.day}}</p>
+          </ion-col>
+          <ion-col no-padding col-auto>
+            <p class="workout-time">{{booking.time}}</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-slide>
+
+      <ion-slide class="workout booking add-button">
+        <button clear ion-button>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-slide>
+
+    </ion-slides>
   </ion-row>
 
-  <ion-col class="booking">
-    <ion-card>
+  <ion-col class="sessions">
+    <ion-card (click)="bookClass()">
       <ion-item>
         <ion-thumbnail item-left>
           <img src="assets/imgs/cycle.png">
@@ -64,7 +96,7 @@
         <p>Zamba, Yoga, Dancing, Cycle, ...etc</p>
       </ion-item>
     </ion-card>
-    <ion-card>
+    <ion-card  (click)="bookSession()">
       <ion-item>
         <ion-thumbnail item-left>
           <img src="assets/imgs/relax.png">

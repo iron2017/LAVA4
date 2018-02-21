@@ -1,0 +1,53 @@
+<ion-content class="guide-modal">
+
+  <div *ngIf="!done">
+    <ion-row justify-content-start>
+      <button class="close-button" ion-button clear (click)="close()">
+        <ion-icon name="close"></ion-icon> close</button>
+    </ion-row>
+    <ion-row>
+      <h2>Book a Class</h2>
+    </ion-row>
+
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-9 align-self-left>
+        <ion-select text-center style="width: 100%; margin: 0; max-width: 100%; color: #999!important;">
+          <ion-option style="width: 100%; margin: 0; ">Choose your city</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-center class="shadow-input">
+      <ion-col col-9 align-self-left>
+        <ion-select text-center style="width: 100%; margin: 0; max-width: 100%; color: #999!important;">
+          <ion-option style="width: 100%; margin: 0; ">Choose your city</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p>Yoga class | Thuresday | 8:10</p>
+    </ion-row>
+
+
+    <ion-row justify-content-center>
+      <button ion-button class="book-button" (click)="book()">Book now</button>
+    </ion-row>
+  </div>
+
+  <div *ngIf="done" class="done">
+    <ion-row justify-content-center>
+      <img src="assets/imgs/_confirmed@2x.png">
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <h2>Thank You!</h2>
+
+    </ion-row>
+
+    <ion-row justify-content-center>
+        <p>Your booking has been booked</p>
+      </ion-row>
+  </div>
+
+</ion-content>

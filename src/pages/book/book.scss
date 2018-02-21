@@ -1,0 +1,143 @@
+page-book {
+  .ion-page.show-page {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .guide-modal {
+    $modal-inset-min-width: 50%;
+    display: flex;
+    height: 60vh;
+    margin-top: 20vh;
+    width: 80%;
+    margin-left: 10%;
+    background: white;
+    border-radius: 5px;
+    padding: 0.5em;
+
+    h2,
+    h3 {
+      // background: red;
+      margin: .5em auto;
+      text-align: center !important;
+      color: #444;
+    }
+
+    p {
+      // background: green;
+      text-align: center;
+      padding: 0;
+      margin: 1em auto;
+      color: #999;
+      font-weight: 100;
+    }
+
+    .close-button {
+      margin: 1em;
+
+      color: #999;
+      font-size: 0.8em;
+      ion-icon {
+        padding: 0.2em;
+      }
+    }
+
+    button {
+      margin: 0 auto;
+      background: transparent;
+      img {
+        width: 3em;
+        background: transparent;
+      }
+
+    }
+
+    .status {
+      button {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-flow: nowrap column;
+        text-align: center;
+
+
+      }
+    }
+
+    ion-row:last-of-type {
+      p {
+        color: #999;
+        padding: 1em;
+      }
+    }
+  }
+
+  .book-button {
+    background: linear-gradient(to right, #0ca3ad, #03c3d8) !important;
+    color: white!important;
+    margin: 0 auto;
+    margin-top: 1em!important;
+
+  }
+
+  .shadow-input {
+    // width: 90%;
+    background: white;
+    margin: 1.5em 2em;
+    padding: 0em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    border-radius: 0.2em;
+
+    &.gray {
+      background: #eeeeee;
+      box-shadow: none;
+    }
+
+    ion-icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-input,
+    ion-icon,
+    button {
+      margin: 0 auto;
+      padding: 0;
+      color: #555;
+
+
+      &[disabled] {
+        color: #999;
+      }
+    }
+    button {
+      font-size: 0.8em;
+      text-transform: capitalize;
+      color: #555;
+    }
+    ion-icon {
+      font-size: 2em;
+    }
+
+    ::placeholder {
+      color: #999;
+      text-align: center;
+      font-weight: lighter;
+    }
+  }
+
+  .done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: nowrap column;
+    height: 100%;
+    img {
+      width: 8em;
+      height: 8em;
+    }
+  }
+
+}
