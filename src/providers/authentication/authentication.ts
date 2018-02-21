@@ -23,8 +23,9 @@ export class AuthenticationProvider {
       "Content-Type": "application/json",
       AuthorizationKey: "as@dL8]Rn3$2S!anR"
     }),
-    AccessToken: '',
-    status: ''
+    AccessToken: "",
+    status: "",
+    debug: true
   };
 
   constructor(public http: HttpClient, private alertCtrl: AlertController) {
@@ -32,6 +33,14 @@ export class AuthenticationProvider {
   }
 
   login(loginForm) {
+    if (this.config.debug) {
+      return of({
+        status: 1,
+        data: {
+          AccessToken: "44e7ba83035a6fd4a6c98f8d5039b403"
+        }
+      });
+    }
     const headers = new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded",
       AuthorizationKey: "as@dL8]Rn3$2S!anR"
@@ -42,15 +51,22 @@ export class AuthenticationProvider {
       params,
       withCredentials: true
     };
-    return this.http
-      .post(
-        `${this.config.baseUrl}/web/user/login`,
-        `MobileNumber=${loginForm.MobileNumber}`,
-        options
-      )
+    return this.http.post(
+      `${this.config.baseUrl}/web/user/login`,
+      `MobileNumber=${loginForm.MobileNumber}`,
+      options
+    );
   }
 
   register(user) {
+    if (this.config.debug) {
+      return of({
+        status: 1,
+        data: {
+          AccessToken: "accb45021c8be4550dd1e826aad399e0"
+        }
+      });
+    }
     const headers = this.config.headers;
     const params = new HttpParams();
     const options = {
@@ -76,6 +92,14 @@ export class AuthenticationProvider {
   }
 
   verify(user) {
+    if (this.config.debug) {
+      return of({
+        status: 1,
+        data: {
+          AccessToken: "accb45021c8be4550dd1e826aad399e0"
+        }
+      });
+    }
     const headers = this.config.headers;
     const params = new HttpParams();
     const options = {
@@ -83,21 +107,22 @@ export class AuthenticationProvider {
       params,
       withCredentials: true
     };
-    return this.http.post(
-      `${this.config.baseUrl}/web/user/verify-token`,
-      JSON.stringify({
-        AuthorizationKey: this.config.AuthorizationKey,
-        MobileNumber: user.MobileNumber,
-        VerificationCode: user.VerificationCode,
-        AccessToken: user.AccessToken,
-      }),
-      options
-    )
-    .pipe(
-      switchMap(response => {
-        this.config.AccessToken = (response as any).data.AccessToken;
-        return of(response);
-      })
-    );;
+    return this.http
+      .post(
+        `${this.config.baseUrl}/web/user/verify-token`,
+        JSON.stringify({
+          AuthorizationKey: this.config.AuthorizationKey,
+          MobileNumber: user.MobileNumber,
+          VerificationCode: user.VerificationCode,
+          AccessToken: user.AccessToken
+        }),
+        options
+      )
+      .pipe(
+        switchMap(response => {
+          this.config.AccessToken = (response as any).data.AccessToken;
+          return of(response);
+        })
+      );
   }
 }
